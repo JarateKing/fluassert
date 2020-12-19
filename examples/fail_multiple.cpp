@@ -10,4 +10,5 @@ int main() {
 	
 	std::string testStr = "a";
 	fluassert(testStr, should.be, "b");
+	fluassert("a", should.Not.be, "a");
 }

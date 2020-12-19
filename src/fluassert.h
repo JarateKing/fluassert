@@ -6,7 +6,7 @@
 #define should Fluassert::Should(0)
 #define Not _not()
 #else
-#define fluassert(v,f,...) (void)0
+#define fluassert(v,f,...) ((void)0)
 #endif
 
 namespace Fluassert {
@@ -33,10 +33,25 @@ namespace Fluassert {
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, int v, bool f) {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
 	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, long v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
+	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, long long v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
+	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, float v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
+	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, double v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
+	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, char v, bool f) {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is '", v, "'");
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, std::string v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is \"", v, "\"");
+	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, const char* v, bool f) {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is \"", v, "\"");
 	}
 
