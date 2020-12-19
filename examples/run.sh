@@ -12,3 +12,8 @@ echo FAIL_MULTIPLE.CPP
 rm a.exe
 g++ -g -O2 -std=gnu++17 -static fail_multiple.cpp
 ./a.exe
+
+echo NDEBUG.CPP
+rm a.exe
+g++ -g -O2 -std=gnu++17 -static ndebug.cpp
+./a.exe

@@ -1,9 +1,13 @@
 #include <iostream>
 #include <algorithm>
 
+#ifndef NDEBUG
 #define fluassert(v,f,...) Fluassert::_test(__LINE__,__FILE__,__FUNCTION__,#v,#f,#__VA_ARGS__,v,f(v,__VA_ARGS__))
 #define should Fluassert::Should(0)
 #define Not _not()
+#else
+#define fluassert(v,f,...) (void)0
+#endif
 
 namespace Fluassert {
 	void _testfail(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, std::string valprefix, auto v, std::string valpostfix) {
