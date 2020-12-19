@@ -17,6 +17,10 @@ namespace Fluassert {
 		std::cerr << toprint;
 		if (valprefix.size() > 0) std::cerr << valprefix << v << valpostfix;
 		std::cerr << '\n';
+
+#ifndef FLUASSERT_NOABORT
+		std::abort();
+#endif
 	}
 
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, auto v, bool f) {

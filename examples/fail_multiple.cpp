@@ -1,3 +1,4 @@
+#define FLUASSERT_NOABORT
 #include "../src/fluassert.h"
 
 int main() {
