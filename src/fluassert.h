@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <cstring>
 
 #ifndef NDEBUG
 #define fluassert(v,f,...) Fluassert::_test(__LINE__,__FILE__,__FUNCTION__,#v,#f,#__VA_ARGS__,v,f(v,__VA_ARGS__))
@@ -64,6 +65,14 @@ namespace Fluassert {
 		bool be_between(auto v, auto c1, auto c2) {
 			if (c1 > c2) std::swap(c1, c2);
 			return inverted ^ (c1 <= v && v <= c2);
+		}
+		bool be_between(std::string v, const char* c1, const char* c2) {
+			int cmp1 = strcmp(v.c_str(), c1), cmp2 = strcmp(v.c_str(), c2);
+			return inverted ^ (cmp1 == 0 || cmp1 != cmp2);
+		}
+		bool be_between(const char* v, const char* c1, const char* c2) {
+			int cmp1 = strcmp(v, c1), cmp2 = strcmp(v, c2);
+			return inverted ^ (cmp1 == 0 || cmp1 != cmp2);
 		}
 		Should _not() {
 			return Should(!inverted);
