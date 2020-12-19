@@ -5,17 +5,24 @@
 #define should Should(0)
 #define Not _not()
 
-std::string _testfail(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc) {
-    for (int i = 0; i < assertf.size(); i++) {
-        if (assertf[i] == '.' || assertf[i] == '_') assertf[i] = ' ';
-        if (assertf[i] >= 'A' && assertf[i] <= 'Z') assertf[i] += 'a' - 'A';
+void _testfail(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, std::string valprefix, auto v, std::string valpostfix) {
+	std::string formatted = assertf;
+    for (int i = 0; i < formatted.size(); i++) {
+        if (formatted[i] == '.' || formatted[i] == '_') formatted[i] = ' ';
+        if (formatted[i] >= 'A' && formatted[i] <= 'Z') formatted[i] += 'a' - 'A';
     }
-    std::string assertion = assertv + " " + assertf + " " + assertc;
-    return "FLUASSERT| " + file + "'s " + func + " (line " + std::to_string(line) + "): " + assertion;
+    std::string assertion = assertv + " " + formatted + " " + assertc;
+	std::string toprint = "FLUASSERT| " + file + "'s " + func + " (line " + std::to_string(line) + "): " + assertion;
+    std::cerr << toprint;
+	if (valprefix.size() > 0) std::cerr << valprefix << v << valpostfix;
+	std::cerr << '\n';
 }
 
 void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, auto v, bool f) {
-    if (!f) std::cerr << _testfail(line, file, func, assertv, assertf, assertc) << '\n';
+	if (!f) _testfail(line, file, func, assertv, assertf, assertc, "", v, "");
+}
+void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, int v, bool f) {
+	if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
 }
 
 struct Should {
