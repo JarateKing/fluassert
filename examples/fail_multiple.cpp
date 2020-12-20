@@ -11,4 +11,7 @@ int main() {
 	std::string testStr = "a";
 	fluassert(testStr, should.be, "b");
 	fluassert("a", should.Not.be, "a");
+	
+	fluassert(5, should.be_lesser_than, 3);
+	fluassert(5, should.be_greater_than, 6);
 }

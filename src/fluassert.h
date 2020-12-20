@@ -62,6 +62,18 @@ namespace Fluassert {
 		bool be(auto v, auto c) {
 			return inverted ^ (v == c);
 		}
+		bool be_greater_than(auto v, auto c) {
+			return inverted ^ (v > c);
+		}
+		bool be_lesser_than(auto v, auto c) {
+			return inverted ^ (v < c);
+		}
+		bool be_greater_or_equal_to(auto v, auto c) {
+			return inverted ^ (v >= c);
+		}
+		bool be_lesser_or_equal_to(auto v, auto c) {
+			return inverted ^ (v <= c);
+		}
 		bool be_between(auto v, auto c1, auto c2) {
 			if (c1 > c2) std::swap(c1, c2);
 			return inverted ^ (c1 <= v && v <= c2);
