@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cstring>
+#include <sstream>
 
 #ifndef NDEBUG
 #define fluassert(v,f,...) Fluassert::_test(__LINE__,__FILE__,__FUNCTION__,#v,#f,#__VA_ARGS__,v,f(v,__VA_ARGS__))
@@ -10,6 +11,10 @@
 #define fluassert(v,f,...) ((void)0)
 #endif
 
+#ifndef FLUASSERT_HANDLER
+#define FLUASSERT_HANDLER(x) std::cerr << (x) << '\n';
+#endif
+
 namespace Fluassert {
 	void _testfail(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, std::string valprefix, auto v, std::string valpostfix) {
 		std::string formatted = assertf;
@@ -17,11 +22,13 @@ namespace Fluassert {
 			if (formatted[i] == '.' || formatted[i] == '_') formatted[i] = ' ';
 			if (formatted[i] >= 'A' && formatted[i] <= 'Z') formatted[i] += 'a' - 'A';
 		}
+		
 		std::string assertion = assertv + " " + formatted + " " + assertc;
-		std::string toprint = "FLUASSERT| " + file + "'s " + func + " (line " + std::to_string(line) + "): " + assertion;
-		std::cerr << toprint;
-		if (valprefix.size() > 0) std::cerr << valprefix << v << valpostfix;
-		std::cerr << '\n';
+		std::stringstream toprint;
+		toprint << "FLUASSERT| " << file << "'s " << func << " (line " << line << "): " << assertion;
+		if (valprefix.size() > 0) toprint << valprefix << v << valpostfix;
+		
+		FLUASSERT_HANDLER(toprint.str());
 
 #ifndef FLUASSERT_NOABORT
 		std::abort();

@@ -17,3 +17,8 @@ echo NDEBUG.CPP
 rm a.exe
 g++ -g -O2 -std=gnu++17 -static ndebug.cpp
 ./a.exe
+
+echo CUSTOM_HANDLER.CPP
+rm a.exe
+g++ -g -O2 -std=gnu++17 -static custom_handler.cpp
+./a.exe
