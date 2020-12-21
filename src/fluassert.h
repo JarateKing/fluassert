@@ -3,6 +3,7 @@
 #include <cstring>
 #include <sstream>
 #include <set>
+#include <unordered_set>
 #include <map>
 #include <vector>
 
@@ -102,6 +103,9 @@ namespace Fluassert {
 			return inverted ^ (cmp1 == 0 || cmp1 != cmp2);
 		}
 		bool contain(std::set<auto> v, auto c) {
+			return inverted ^ (v.count(c) != 0);
+		}
+		bool contain(std::unordered_set<auto> v, auto c) {
 			return inverted ^ (v.count(c) != 0);
 		}
 		bool contain(std::map<auto, auto> v, auto c) {
