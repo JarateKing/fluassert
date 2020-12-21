@@ -15,4 +15,8 @@ int main() {
 	// can chain not
 	fluassert(testValue, should.Not.be, 0);
 	fluassert(testValue, should.Not.be, 2);
+	
+	// can do more complicated checks
+	std::vector stuff = {1, 2, 3, 4, 5, 6};
+	fluassert(stuff, should.contain, 1);
 }
