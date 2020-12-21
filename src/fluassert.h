@@ -122,6 +122,9 @@ namespace Fluassert {
 					return !inverted;
 			return inverted;
 		}
+		bool contain(std::string v, auto c) {
+			return inverted ^ (v.find(c) != std::string::npos);
+		}
 		Should _not() {
 			return Should(!inverted);
 		}
