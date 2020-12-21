@@ -16,7 +16,7 @@
 #endif
 
 namespace Fluassert {
-	void _testfail(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, std::string valprefix, auto v, std::string valpostfix) {
+	void _testfail(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, std::string post) {
 		std::string formatted = assertf;
 		for (int i = 0; i < formatted.size(); i++) {
 			if (formatted[i] == '.' || formatted[i] == '_') formatted[i] = ' ';
@@ -25,8 +25,7 @@ namespace Fluassert {
 		
 		std::string assertion = assertv + " " + formatted + " " + assertc;
 		std::stringstream toprint;
-		toprint << "FLUASSERT| " << file << "'s " << func << " (line " << line << "): " << assertion;
-		if (valprefix.size() > 0) toprint << valprefix << v << valpostfix;
+		toprint << "FLUASSERT| " << file << "'s " << func << " (line " << line << "): " << assertion << post;
 		
 		FLUASSERT_HANDLER(toprint.str());
 
@@ -34,33 +33,39 @@ namespace Fluassert {
 		std::abort();
 #endif
 	}
+	
+	std::string _testfailpost(std::string pre, auto v, std::string post) {
+		std::stringstream toprint;
+		toprint << pre << v << post;
+		return toprint.str();
+	}
 
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, auto v, bool f) {
-		if (!f) _testfail(line, file, func, assertv, assertf, assertc, "", v, "");
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, "");
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, int v, bool f) {
-		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, long v, bool f) {
-		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, long long v, bool f) {
-		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, float v, bool f) {
-		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, double v, bool f) {
-		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is ", v, "");
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, char v, bool f) {
-		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is '", v, "'");
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is '", v, "'"));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, std::string v, bool f) {
-		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is \"", v, "\"");
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is \"", v, "\""));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, const char* v, bool f) {
-		if (!f) _testfail(line, file, func, assertv, assertf, assertc, " - but is \"", v, "\"");
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is \"", v, "\""));
 	}
 
 	struct Should {
