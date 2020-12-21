@@ -3,6 +3,7 @@
 #include <cstring>
 #include <sstream>
 #include <set>
+#include <map>
 
 #ifndef NDEBUG
 #define fluassert(v,f,...) Fluassert::_test(__LINE__,__FILE__,__FUNCTION__,#v,#f,#__VA_ARGS__,v,f(v,__VA_ARGS__))
@@ -101,6 +102,18 @@ namespace Fluassert {
 		}
 		bool contain(std::set<auto> v, auto c) {
 			return inverted ^ (v.count(c) != 0);
+		}
+		bool contain(std::map<auto, auto> v, auto c) {
+			return inverted ^ (v.count(c) != 0);
+		}
+		bool contain_key(std::map<auto, auto> v, auto c) {
+			return inverted ^ (v.count(c) != 0);
+		}
+		bool contain_value(std::map<auto, auto> v, auto c) {
+			for (auto e : v)
+				if (e.second == c)
+					return !inverted;
+			return inverted;
 		}
 		Should _not() {
 			return Should(!inverted);
