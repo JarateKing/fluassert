@@ -4,6 +4,7 @@
 #include <sstream>
 #include <set>
 #include <map>
+#include <vector>
 
 #ifndef NDEBUG
 #define fluassert(v,f,...) Fluassert::_test(__LINE__,__FILE__,__FUNCTION__,#v,#f,#__VA_ARGS__,v,f(v,__VA_ARGS__))
@@ -112,6 +113,12 @@ namespace Fluassert {
 		bool contain_value(std::map<auto, auto> v, auto c) {
 			for (auto e : v)
 				if (e.second == c)
+					return !inverted;
+			return inverted;
+		}
+		bool contain(std::vector<auto> v, auto c) {
+			for (auto e : v)
+				if (e == c)
 					return !inverted;
 			return inverted;
 		}
