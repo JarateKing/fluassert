@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cstring>
 #include <sstream>
+#include <set>
 
 #ifndef NDEBUG
 #define fluassert(v,f,...) Fluassert::_test(__LINE__,__FILE__,__FUNCTION__,#v,#f,#__VA_ARGS__,v,f(v,__VA_ARGS__))
@@ -97,6 +98,9 @@ namespace Fluassert {
 		bool be_between(const char* v, const char* c1, const char* c2) {
 			int cmp1 = strcmp(v, c1), cmp2 = strcmp(v, c2);
 			return inverted ^ (cmp1 == 0 || cmp1 != cmp2);
+		}
+		bool contain(std::set<auto> v, auto c) {
+			return inverted ^ (v.count(c) != 0);
 		}
 		Should _not() {
 			return Should(!inverted);
