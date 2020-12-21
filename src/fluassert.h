@@ -5,6 +5,7 @@
 #include <set>
 #include <unordered_set>
 #include <map>
+#include <unordered_map>
 #include <vector>
 
 #ifndef NDEBUG
@@ -115,6 +116,18 @@ namespace Fluassert {
 			return inverted ^ (v.count(c) != 0);
 		}
 		bool contain_value(std::map<auto, auto> v, auto c) {
+			for (auto e : v)
+				if (e.second == c)
+					return !inverted;
+			return inverted;
+		}
+		bool contain(std::unordered_map<auto, auto> v, auto c) {
+			return inverted ^ (v.count(c) != 0);
+		}
+		bool contain_key(std::unordered_map<auto, auto> v, auto c) {
+			return inverted ^ (v.count(c) != 0);
+		}
+		bool contain_value(std::unordered_map<auto, auto> v, auto c) {
 			for (auto e : v)
 				if (e.second == c)
 					return !inverted;
