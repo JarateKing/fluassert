@@ -142,6 +142,19 @@ namespace Fluassert {
 		bool contain(std::string v, auto c) {
 			return inverted ^ (v.find(c) != std::string::npos);
 		}
+		bool begin_with(std::string v, std::string c) {
+			if (v.size() < c.size())
+				return inverted;
+			
+			for (int i = 0; i < c.size(); i++)
+				if (v[i] != c[i])
+					return inverted;
+				
+			return !inverted;
+		}
+		bool begin_with(std::string v, char c) {
+			return inverted ^ (v.size() > 0 && v[0] == c);
+		}
 		Should _not() {
 			return Should(!inverted);
 		}
