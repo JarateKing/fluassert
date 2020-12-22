@@ -155,6 +155,19 @@ namespace Fluassert {
 		bool begin_with(std::string v, char c) {
 			return inverted ^ (v.size() > 0 && v[0] == c);
 		}
+		bool end_with(std::string v, std::string c) {
+			if (v.size() < c.size())
+				return inverted;
+			
+			for (int i = 0; i < c.size(); i++)
+				if (v[v.size()-1-i] != c[c.size()-1-i])
+					return inverted;
+				
+			return !inverted;
+		}
+		bool end_with(std::string v, char c) {
+			return inverted ^ (v.size() > 0 && v[0] == c);
+		}
 		Should _not() {
 			return Should(!inverted);
 		}
