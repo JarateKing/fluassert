@@ -29,7 +29,7 @@ namespace Fluassert {
 			if (formatted[i] >= 'A' && formatted[i] <= 'Z') formatted[i] += 'a' - 'A';
 		}
 		
-		std::string assertion = assertv + " " + formatted + " " + assertc;
+		std::string assertion = assertv + " " + formatted + ((assertc.size() > 0) ? " " : "") + assertc;
 		std::stringstream toprint;
 		toprint << "FLUASSERT| " << file << "'s " << func << " (line " << line << "): " << assertion << post;
 		
