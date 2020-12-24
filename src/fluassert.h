@@ -9,7 +9,7 @@
 #include <vector>
 
 #ifndef NDEBUG
-#define fluassert(v,f,...) Fluassert::_test(__LINE__,__FILE__,__FUNCTION__,#v,#f,#__VA_ARGS__,v,f((v), ##__VA_ARGS__))
+#define fluassert(v,f,...) Fluassert::_test(__LINE__,__FILE__,__FUNCTION__,#v,#f,#__VA_ARGS__,(v),f((v), ##__VA_ARGS__))
 #define should Fluassert::Should(0)
 #define Not _not()
 #else
@@ -173,6 +173,15 @@ namespace Fluassert {
 		}
 		bool end_with(std::string v, char c) {
 			return inverted ^ (v.size() > 0 && v[0] == c);
+		}
+		bool throw_error(auto v) {
+			try {
+				v();
+				return inverted;
+			}
+			catch(...) {
+				return !inverted;
+			}
 		}
 		Should _not() {
 			return Should(!inverted);
