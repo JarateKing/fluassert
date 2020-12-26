@@ -17,6 +17,6 @@ int main() {
 	fluassert(testValue, should.Not.be, 2);
 	
 	// can do more complicated checks
-	std::vector stuff = {1, 2, 3, 4, 5, 6};
+	std::vector<int> stuff = {1, 2, 3, 4, 5, 6};
 	fluassert(stuff, should.contain, 1);
 }
