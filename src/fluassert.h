@@ -178,15 +178,6 @@ namespace Fluassert {
 		bool end_with(std::string v, char c) {
 			return inverted ^ (v.size() > 0 && v[0] == c);
 		}
-		bool throw_error(auto v) {
-			try {
-				v();
-				return inverted;
-			}
-			catch(...) {
-				return !inverted;
-			}
-		}
 		bool match_regex(std::string v, std::regex c) {
 			return inverted ^ (std::regex_match(v, c));
 		}
@@ -198,6 +189,15 @@ namespace Fluassert {
 		}
 		bool contain_regex(std::string v, std::string c) {
 			return contain_regex(v, std::regex(c));
+		}
+		bool throw_error(auto v) {
+			try {
+				v();
+				return inverted;
+			}
+			catch(...) {
+				return !inverted;
+			}
 		}
 		Should _not() {
 			return Should(!inverted);
