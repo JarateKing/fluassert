@@ -7,6 +7,7 @@
 #include <map>
 #include <unordered_map>
 #include <vector>
+#include <regex>
 
 #ifndef NDEBUG
 #define fluassert(v,f,...) Fluassert::_test(__LINE__,__FILE__,__FUNCTION__,#v,#f,#__VA_ARGS__,(v),f((v), ##__VA_ARGS__))
@@ -182,6 +183,18 @@ namespace Fluassert {
 			catch(...) {
 				return !inverted;
 			}
+		}
+		bool match_regex(std::string v, std::regex c) {
+			return inverted ^ (std::regex_match(v, c));
+		}
+		bool match_regex(std::string v, std::string c) {
+			return match_regex(v, std::regex(c));
+		}
+		bool contain_regex(std::string v, std::regex c) {
+			return inverted ^ (std::regex_search(v, c));
+		}
+		bool contain_regex(std::string v, std::string c) {
+			return contain_regex(v, std::regex(c));
 		}
 		Should _not() {
 			return Should(!inverted);
