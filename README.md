@@ -1,6 +1,6 @@
 # Fluassert
 
-Header-only better assertions for C++.
+This is a header-only assertions library for C++. The intention is provide more general assertions that offer multiple improvements over the standard asserts. These include improved debug information where applicable, greater customization options, greater readability, and a collection of functions to utilize with assertions.
 
 ## Usage
 
