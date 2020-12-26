@@ -21,3 +21,4 @@ Outputs: `FLUASSERT| example.cpp's main (line 5): x should be 0 - but is 1` befo
 * `NDEBUG` can be defined in order to disable fluasserts
 * `FLUASSERT_NOABORT` can be defined in order to continue program execution after a fluassert fails
 * `FLUASSERT_HANDLER(x)` can be defined to determine how fluasserts are printed. By default this is `std::cerr << (x) << '\n';`
+* `FLUASSERT_PRESERVE_ASSERT` can be defined in order to allow usage of `assert.h` alongside fluassert. Only matters when `assert.h` is included before `fluassert.h`, to avoid redefining the `assert(x)` macro.
