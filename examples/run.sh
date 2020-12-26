@@ -27,3 +27,13 @@ echo EXCEPTIONS.CPP
 rm a.exe
 g++ -g -O2 -std=gnu++17 -static exceptions.cpp
 ./a.exe
+
+echo WITH_ASSERT.CPP
+rm a.exe
+g++ -g -O2 -std=gnu++17 -static with_assert.cpp
+./a.exe
+
+echo WITHOUT_ASSERT.CPP
+rm a.exe
+g++ -g -O2 -std=gnu++17 -static without_assert.cpp
+./a.exe
