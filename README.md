@@ -10,9 +10,11 @@ Including the header file via `#include "fluassert.h"` should be sufficient in o
 #include "fluassert.h"
 
 int main() {
-	fluassert(1, should.be, 1);
+	int x = 1;
+	fluassert(x, should.be, 0);
 }
 ```
+Outputs: `FLUASSERT| example.cpp's main (line 5): x should be 0 - but is 1` before exiting the program early.
 
 ### Optional Defines
 
