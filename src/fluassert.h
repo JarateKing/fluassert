@@ -25,6 +25,7 @@
 #endif
 
 namespace Fluassert {
+	// handling and printing failed asserts
 	void _testfail(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, std::string post) {
 		std::string formatted = assertf;
 		for (int i = 0; i < formatted.size(); i++) {
@@ -42,13 +43,13 @@ namespace Fluassert {
 		std::abort();
 #endif
 	}
-	
 	std::string _testfailpost(std::string pre, auto v, std::string post) {
 		std::stringstream toprint;
 		toprint << pre << v << post;
 		return toprint.str();
 	}
 
+	// catching printable types
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, auto v, bool f) {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, "");
 	}
@@ -77,6 +78,7 @@ namespace Fluassert {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is \"", v, "\""));
 	}
 
+	// conditionals
 	struct Should {
 		bool inverted;
 		Should(bool invert) : inverted(invert) {}
