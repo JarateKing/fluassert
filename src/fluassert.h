@@ -219,6 +219,9 @@ namespace Fluassert {
 				return !inverted;
 			}
 		}
+		bool be_size(auto v, auto c) {
+			return inverted ^ (v.size() == c);
+		}
 		Should _not() {
 			return Should(!inverted);
 		}

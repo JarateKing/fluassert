@@ -41,3 +41,4 @@ Outputs: `FLUASSERT| example.cpp's main (line 5): x should be 0 - but is 1` befo
 * `x should.match_regex y` -- for `std::string`, checks if `x` fully matches the regular expression `y`
 * `x should.contain_regex y` -- for `std::string`, checks if `x` has a substring (potentially the full string) that matches the regular expression `y`
 * `x should.throw_error` -- for a zero-argument function or lambda `x`, check if an exception gets thrown
+* `x should.be_size y` -- for a container with `.size()`, check if its size is equal to `y`
