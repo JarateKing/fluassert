@@ -53,13 +53,28 @@ namespace Fluassert {
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, auto v, bool f) {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, "");
 	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, short v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
+	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, unsigned short v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
+	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, int v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
+	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, unsigned int v, bool f) {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, long v, bool f) {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
 	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, unsigned long v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
+	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, long long v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
+	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, unsigned long long v, bool f) {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, float v, bool f) {
@@ -69,6 +84,9 @@ namespace Fluassert {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is ", v, ""));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, char v, bool f) {
+		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is '", v, "'"));
+	}
+	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, wchar_t v, bool f) {
 		if (!f) _testfail(line, file, func, assertv, assertf, assertc, _testfailpost(" - but is '", v, "'"));
 	}
 	void _test(int line, std::string file, std::string func, std::string assertv, std::string assertf, std::string assertc, std::string v, bool f) {
