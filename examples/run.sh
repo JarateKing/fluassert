@@ -37,3 +37,8 @@ echo WITHOUT_ASSERT.CPP
 rm a.exe
 g++ -g -O2 -std=gnu++17 -static without_assert.cpp
 ./a.exe
+
+echo CUSTOM_ASSERT.CPP
+rm a.exe
+g++ -g -O2 -std=gnu++17 -static custom_assert.cpp
+./a.exe
