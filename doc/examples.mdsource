@@ -1,0 +1,21 @@
+# Examples
+
+## Basic
+
+We can create simple fluasserts with a variety of methods.
+
+```python
+@@include ../examples/basic.cpp
+```
+
+The above code will pass fine without any problems, since all the fluasserts are true. An example of failing would look like:
+
+```python
+@@include ../examples/fail.cpp
+```
+
+Which would output:
+
+```
+FLUASSERT| fail.cpp's main (line 5): testVariable should be 2 - but is 1
+```
