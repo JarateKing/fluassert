@@ -17,5 +17,6 @@ The above code will pass fine without any problems, since all the fluasserts are
 Which would output:
 
 ```
-@@output "../examples/run.sh" "../examples/fail.cpp"
+@@run "../examples/run.sh" "../examples/fail.cpp"
+@@output a.exe
 ```
