@@ -17,5 +17,5 @@ The above code will pass fine without any problems, since all the fluasserts are
 Which would output:
 
 ```
-FLUASSERT| fail.cpp's main (line 5): testVariable should be 2 - but is 1
+@@output "../examples/run.sh" "../examples/fail.cpp"
 ```
