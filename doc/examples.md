@@ -26,7 +26,8 @@ int main() {
 	// can do more complicated checks
 	std::vector<int> stuff = {1, 2, 3, 4, 5, 6};
 	fluassert(stuff, should.contain, 1);
-}```
+}
+```
 
 The above code will pass fine without any problems, since all the fluasserts are true. An example of failing would look like:
 
