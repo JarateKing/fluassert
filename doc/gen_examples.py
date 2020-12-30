@@ -12,8 +12,9 @@ with open('examples.mdsource', 'r') as file:
 			cmd = subprocess.run(line[5:], shell=True)
 		elif (len(words) > 0 and words[0] == '@@output'):
 			cmd = subprocess.run(line[8:], shell=True, capture_output=True)
-			output = cmd.stderr
-			toprint.append(output.decode())
+			output = cmd.stderr.decode()
+			output.replace('\n\n', '\n')
+			toprint.append(output.strip() + '\n')
 		else:
 			toprint.append(line)
 

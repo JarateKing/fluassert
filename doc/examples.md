@@ -45,5 +45,5 @@ int main() {
 Which would output:
 
 ```
-FLUASSERT| ../examples/fail.cpp's main (line 5): testVariable should be 2 - but is 1
+FLUASSERT| ../examples/fail.cpp's main (line 5): testVariable should be 2 - but is 1
 ```
