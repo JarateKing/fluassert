@@ -19,4 +19,5 @@ Which would output:
 ```
 @@run "../examples/run.sh" "../examples/fail.cpp"
 @@output a.exe
+@@run rm a.exe
 ```
