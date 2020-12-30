@@ -4,7 +4,7 @@
 
 We can create simple fluasserts with a variety of methods.
 
-```python
+```cpp
 #include "../src/fluassert.h"
 
 int main() {
@@ -31,7 +31,7 @@ int main() {
 
 The above code will pass fine without any problems, since all the fluasserts are true. An example of failing would look like:
 
-```python
+```cpp
 #include "../src/fluassert.h"
 
 int main() {
