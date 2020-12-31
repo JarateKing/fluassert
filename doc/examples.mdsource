@@ -19,5 +19,21 @@ Which would output:
 ```
 @@run "../examples/run.sh" "../examples/fail.cpp"
 @@output a.exe
-@@run rm a.exe
 ```
+
+## Advanced
+
+### Continue Running After Failure
+
+By default, the program will exit early when an assert fails. This behaviour can be disabled with the `FLUASSERT_NOABORT` define, like so:
+
+```cpp
+@@include ../examples/fail_multiple.cpp
+```
+
+```
+@@run "../examples/run.sh" "../examples/fail_multiple.cpp"
+@@output a.exe
+```
+
+@@run rm a.exe

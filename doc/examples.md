@@ -47,3 +47,39 @@ Which would output:
 ```
 FLUASSERT| ../examples/fail.cpp's main (line 5): testVariable should be 2 - but is 1
 ```
+
+## Advanced
+
+### Continue Running After Failure
+
+By default, the program will exit early when an assert fails. This behaviour can be disabled with the `FLUASSERT_NOABORT` define, like so:
+
+```cpp
+#define FLUASSERT_NOABORT
+#include "../src/fluassert.h"
+
+int main() {
+	int testVariable = 1;
+	fluassert(testVariable, should.be, 2);
+	
+	char testChar = 'a';
+	fluassert(testChar, should.be, 'b');
+	
+	std::string testStr = "a";
+	fluassert(testStr, should.be, "b");
+	fluassert("a", should.Not.be, "a");
+	
+	fluassert(5, should.be_lesser_than, 3);
+	fluassert(5, should.be_greater_than, 6);
+}
+```
+
+```
+FLUASSERT| ../examples/fail_multiple.cpp's main (line 6): testVariable should be 2 - but is 1
+FLUASSERT| ../examples/fail_multiple.cpp's main (line 9): testChar should be 'b' - but is 'a'
+FLUASSERT| ../examples/fail_multiple.cpp's main (line 12): testStr should be "b" - but is "a"
+FLUASSERT| ../examples/fail_multiple.cpp's main (line 13): "a" should not be "a" - but is "a"
+FLUASSERT| ../examples/fail_multiple.cpp's main (line 15): 5 should be lesser than 3 - but is 5
+FLUASSERT| ../examples/fail_multiple.cpp's main (line 16): 5 should be greater than 6 - but is 5
+```
+
