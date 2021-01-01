@@ -23,6 +23,16 @@ Which would output:
 
 ## Advanced
 
+### Disable
+
+Much like with the traditional `assert.h` asserts, the `NDEBUG` define will disable all fluasserts:
+
+```cpp
+@@include ../examples/ndebug.cpp
+```
+
+Because the fluassert was disabled via `NDEBUG`, this program produces no output.
+
 ### Continue Running After Failure
 
 By default, the program will exit early when an assert fails. This behaviour can be disabled with the `FLUASSERT_NOABORT` define, like so:

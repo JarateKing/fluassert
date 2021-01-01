@@ -50,6 +50,22 @@ FLUASSERT| ../examples/fail.cpp's main (line 5): testVariable should be 2 - but 
 
 ## Advanced
 
+### Disable
+
+Much like with the traditional `assert.h` asserts, the `NDEBUG` define will disable all fluasserts:
+
+```cpp
+#define NDEBUG
+#include "../src/fluassert.h"
+
+int main() {
+	int testVariable = 1;
+	fluassert(testVariable, should.be, 2);
+}
+```
+
+Because the fluassert was disabled via `NDEBUG`, this program produces no output.
+
 ### Continue Running After Failure
 
 By default, the program will exit early when an assert fails. This behaviour can be disabled with the `FLUASSERT_NOABORT` define, like so:
