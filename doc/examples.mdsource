@@ -46,4 +46,17 @@ By default, the program will exit early when an assert fails. This behaviour can
 @@output a.exe
 ```
 
+### Custom Output
+
+By changing the define `FLUASSERT_HANDLER(x)` where `x` is the fluassert fail message as a string, we can intercept and/or modify how the fluassert fail message is printed.
+
+```cpp
+@@include ../examples/custom_handler.cpp
+```
+
+```
+@@run "../examples/run.sh" "../examples/custom_handler.cpp"
+@@output a.exe
+```
+
 @@run rm a.exe

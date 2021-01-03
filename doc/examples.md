@@ -99,3 +99,28 @@ FLUASSERT| ../examples/fail_multiple.cpp's main (line 15): 5 should be lesser th
 FLUASSERT| ../examples/fail_multiple.cpp's main (line 16): 5 should be greater than 6 - but is 5
 ```
 
+### Custom Output
+
+By changing the define `FLUASSERT_HANDLER(x)` where `x` is the fluassert fail message as a string, we can intercept and/or modify how the fluassert fail message is printed.
+
+```cpp
+#include <iostream>
+
+// use the `handleAsserts` method to print
+// by default it's `std::cerr << (x) << '\n';
+#define FLUASSERT_HANDLER(x) handleAsserts(x);
+std::string handleAsserts(std::string s) {
+	std::cerr << "handling " << s << '\n';
+}
+#include "../src/fluassert.h"
+
+int main() {
+	int testVariable = 1;
+	fluassert(testVariable, should.be, 2);
+}
+```
+
+```
+handling FLUASSERT| ../examples/custom_handler.cpp's main (line 13): testVariable should be 2 - but is 1
+```
+
