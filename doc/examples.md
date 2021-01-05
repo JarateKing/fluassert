@@ -124,3 +124,45 @@ int main() {
 handling FLUASSERT| ../examples/custom_handler.cpp's main (line 13): testVariable should be 2 - but is 1
 ```
 
+### Compatibility with assert.h
+
+By default, `assert()` calls are defined by including `fluassert.h`. This is incompatible with the default `assert.h` defines:
+
+```cpp
+#define FLUASSERT_NOABORT
+#include "../src/fluassert.h"
+
+int main() {
+	fluassert((1 == 0), should.be, true);
+	assert(1 == 0);
+}
+```
+
+```
+FLUASSERT| ../examples/without_assert.cpp's main (line 5): (1 == 0) should be true
+FLUASSERT| ../examples/without_assert.cpp's main (line 6): (1 == 0) should be true
+```
+
+However, it is possible to use both simultaneously via usage of `FLUASSERT_PRESERVE_ASSERT`
+
+```cpp
+#include <assert.h>
+
+#define FLUASSERT_PRESERVE_ASSERT
+#define FLUASSERT_NOABORT
+#include "../src/fluassert.h"
+
+int main() {
+	fluassert((1 == 0), should.be, true);
+	assert(1 == 0);
+}
+```
+
+```
+FLUASSERT| ../examples/with_assert.cpp's main (line 8): (1 == 0) should be true
+Assertion failed!
+Program: C:\programming\fluassert\doc\a.exe
+File: ../examples/with_assert.cpp, Line 9
+Expression: 1 == 0
+```
+

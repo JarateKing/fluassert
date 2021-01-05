@@ -59,4 +59,28 @@ By changing the define `FLUASSERT_HANDLER(x)` where `x` is the fluassert fail me
 @@output a.exe
 ```
 
+### Compatibility with assert.h
+
+By default, `assert()` calls are defined by including `fluassert.h`. This is incompatible with the default `assert.h` defines:
+
+```cpp
+@@include ../examples/without_assert.cpp
+```
+
+```
+@@run "../examples/run.sh" "../examples/without_assert.cpp"
+@@output a.exe
+```
+
+However, it is possible to use both simultaneously via usage of `FLUASSERT_PRESERVE_ASSERT`
+
+```cpp
+@@include ../examples/with_assert.cpp
+```
+
+```
+@@run "../examples/run.sh" "../examples/with_assert.cpp"
+@@output a.exe
+```
+
 @@run rm a.exe
