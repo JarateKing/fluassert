@@ -8,13 +8,13 @@ We can create simple fluasserts with a variety of methods.
 @@include ../examples/basic.cpp
 ```
 
-The above code will pass fine without any problems, since all the fluasserts are true. An example of failing would look like:
+The above code will pass fine without any problems (and by extension, produce no output), since all the fluasserts are true. An example of failing would look like:
 
 ```cpp
 @@include ../examples/fail.cpp
 ```
 
-Which would output:
+Which would output to stderr:
 
 ```
 @@run "../examples/run.sh" "../examples/fail.cpp"
@@ -31,7 +31,7 @@ Much like with the traditional `assert.h` asserts, the `NDEBUG` define will disa
 @@include ../examples/ndebug.cpp
 ```
 
-Because the fluassert was disabled via `NDEBUG`, this program produces no output.
+Because the fluassert was disabled via `NDEBUG`, this program produces no output. This also removes the code from the compiled binary entirely, much like traditional asserts, so there should be no penalty to using fluasserts when using `NDEBUG`.
 
 ### Continue Running After Failure
 

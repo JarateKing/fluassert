@@ -29,7 +29,7 @@ int main() {
 }
 ```
 
-The above code will pass fine without any problems, since all the fluasserts are true. An example of failing would look like:
+The above code will pass fine without any problems (and by extension, produce no output), since all the fluasserts are true. An example of failing would look like:
 
 ```cpp
 #include "../src/fluassert.h"
@@ -42,7 +42,7 @@ int main() {
 }
 ```
 
-Which would output:
+Which would output to stderr:
 
 ```
 FLUASSERT| ../examples/fail.cpp's main (line 5): testVariable should be 2 - but is 1
@@ -64,7 +64,7 @@ int main() {
 }
 ```
 
-Because the fluassert was disabled via `NDEBUG`, this program produces no output.
+Because the fluassert was disabled via `NDEBUG`, this program produces no output. This also removes the code from the compiled binary entirely, much like traditional asserts, so there should be no penalty to using fluasserts when using `NDEBUG`.
 
 ### Continue Running After Failure
 
