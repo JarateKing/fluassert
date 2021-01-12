@@ -50,6 +50,8 @@ FLUASSERT| ../examples/fail.cpp's main (line 5): testVariable should be 2 - but 
 
 ## Advanced
 
+There are several additional options and capabilities of fluassert that should be mentioned, many of them beyond what standard asserts can supply.
+
 ### Disable
 
 Much like with the traditional `assert.h` asserts, the `NDEBUG` define will disable all fluasserts:
